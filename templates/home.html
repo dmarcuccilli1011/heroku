@@ -1,0 +1,26 @@
+<!-- templates/home.html -->
+{% extends '_base.html' %}
+{% load static %}
+
+
+{% block title %}Home{% endblock title%}
+
+{% block content %}
+    <h1>Welcome to my showcase app!</h1>
+    <img class="home_image" src="{% static 'images/docker-django-thumbnail.png' %}"><br>
+    <p class="welcome_text">This is my Django app. A full description will appear on a dedicated page.
+        Please create an account using the links above and feel free to browse!</p>
+
+    <div class="status_info">
+        <u><h4>User Status: </h4></u>
+        {% if user.is_authenticated %}
+            hi {{ user.email }}
+            <p><a href="{% url 'account_logout' %}">Log Out Here</a></p>
+        {% else %}
+            <p>You are not logged in</p>
+            <a href="{% url 'account_login' %}">Log In Here</a><br>
+            <a href="{% url 'account_signup' %}">Sign up here!</a>
+        {% endif %}
+    </div>
+
+{% endblock content %}

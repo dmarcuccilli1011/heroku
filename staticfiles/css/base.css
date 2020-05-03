@@ -1,0 +1,56 @@
+/* static/css/base.css */
+h1 {
+    color: red;
+}
+
+body {
+    padding: 5px;
+}
+
+.bookcover {
+    height: 250px;
+    width: auto;
+}
+
+.welcome_text {
+    position: relative;
+    float: left;
+    width: 70%;
+    padding-bottom: 50px ;
+}
+
+.home_image {
+    position: relative;
+    padding: 5px;
+    float: right;
+    width: 30%;
+    
+}
+
+.home_image:hover {
+    cursor: progress;
+}
+
+.status_info {
+    position: relative;
+    float: right;
+    vertical-align: bottom;
+    border: 1px solid black;
+    width: 30%;
+    padding: 5px;
+    margin-top: 25px;
+}
+
+.about_us {
+    position: relative;
+    padding: 5px;
+    width: 70%;
+    padding-bottom: 75px;
+}
+
+.profile_pic{
+    position: relative;
+    float: right;
+    height: 250px;
+
+}

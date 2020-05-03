@@ -1,0 +1,43 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<link rel="stylesheet" type="text/css" href="{% static 'formapp/info.css' %}">
+
+{% block title %}Post Info{% endblock title %}
+
+
+{% block content %}
+
+        <h1>take a closer look at this here blog post...</h1>
+        <a href="{% url 'formapp:index' %}">Heres a link back home!</a>
+        <div>
+            <h2>Author: {{ blogpost.username }}</h2>
+            <p>posted on: {{ blogpost.pub_date }}</p>
+            <p>{{ blogpost.post_content }}</p>
+        </div>
+
+        <div>
+            <h2>heres the comment section</h2>
+
+            <ul>
+                {% for comment in blogpost.comment_set.all %}
+                <li>
+                    <p> <strong>{{ comment.username}}</strong> at  <strong>{{ comment.timestamp }}</strong>:</p>
+                    <p>{{ comment.comment_content }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div style="width: 80%; padding-left: 50px;">
+            <h2>heres where you can post a new comment for this post hopefully</h2>
+            <form action="{% url 'formapp:comment-add' blogpost.id %}" method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <input type="submit" value="click me to submit your comment">
+            </form>
+            
+        </div>
+
+{% endblock content%}

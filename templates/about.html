@@ -1,0 +1,50 @@
+<!-- templates/about.html -->
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}About and Information{% endblock title %}
+
+{% block content %}
+    <h1>About Us</h1>
+    <img class="profile_pic" src="{% static 'images/profile_pic.jpg' %}" alt='profile pic'>
+    <div class="about_us">
+        <p>This application was written using the python framework Django. There are
+            many dependencies in this project, a few of which are listed below:
+        </p>
+        <ul>
+            <li>Gunicorn</li>
+            <li>Whitenoise</li>
+            <li>Django Crispy Forms</li>
+            <li>Pillow</li>
+            <li>Django Allauth</li>
+        </ul>
+        <p>Among others. I used docker locally for most of development, orchestrating containers
+            with docker-compose. I am still considering practical uses of this lovely web application,
+            but in the meantime hopefully job recruitment will suffice.
+        </p>
+        <p>
+            I went to school in Champaign-Urbana studying electrical engineering and computer science.
+            I have always enjoyed the simplicity and the curiosity that computers have brought into my life.
+            To many, both the software and the hardware it runs on is simply magic. But underneath the blanket of 
+            computer science and engineering there are many areas which one could focus on.
+            Security is my main concern for a modern society constantly connected the internet, and 
+            that is where I focus my efforts.  
+        </p>
+        <p>
+            <ul style="list-style: none;">
+                <li>All of the source code for this web application is available on github 
+                    <a href="https://github.com/dmarcuccilli1011/heroku">here</a>.</li>
+                <li>You can find my LinkedIn 
+                    <a href="https://www.linkedin.com/in/danny-marcuccilli-1b207818b/">Here</a>.</li>
+            </ul>
+        </p>
+        
+        <p><b style="color:red">A special thanks</b> to my good friend Ryan who was kind enough to share his wealth of 
+        knowledge with me, very patiently, every step of the way. I have included a link to his website below,
+        he offers many technology solutions worth checking out.
+        </p>
+        <a href="https://guldentech.com/function/guldentech-site/index.html">Check him out here!</a>
+    </div>
+
+    
+{% endblock content %}

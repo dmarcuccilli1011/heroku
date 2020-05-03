@@ -1,0 +1,37 @@
+body {
+    background-color: whitesmoke;
+    text-align: left;
+    padding: 5px;
+    margin-top: 0px;
+    margin-left: 10px;
+    color: black;
+    width: 100%;
+}
+
+
+#rightSide {
+    position: relative;
+    float: right;
+    width: 25%;
+    background-color: #62f86a;
+    margin-left: -100px;
+    margin-bottom: -50px;
+    padding-bottom: 50px;
+}
+
+#image1 {
+    position: absolute;
+    padding: 5px;
+    width: 250px;
+}
+
+.blog_index {
+    position: relative;
+    padding-top: 150px;
+    vertical-align: bottom;
+    width: 75%;
+}
+
+.post_list {
+    width: 75%;
+}

@@ -1,0 +1,42 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'formapp/index_style.css' %}"> 
+    <img id="image1" src="{% static 'formapp/welcome_image1.jpg' %}" alt="an image would go here">
+        <div id="rightSide">
+            <h2>Navigation</h2>
+            <ul>
+                <li><a href="#" >Broken link to add author</a></li>
+                <li><a href="#">Broken link to share contact info</a></li>
+                <li><a href="{% url 'formapp:blogpost-add' %}">Click here to make a blog post!</a></li>
+            </ul>
+        </div>
+
+        
+        
+        <div class='blog_index'>
+            <h2>Welcome to the blog posts index page!</h2>
+            <p>Here we have all sorts of stuff to talk about with people all over the world</p>
+            <br><br><br><br><br>
+        </div>
+
+
+
+        <div class='post_list'>
+            <h4>Here are what some other people have posted: </h4>
+            {% if hello_world %}
+
+                {% for post in hello_world.blog_posts %}
+                        <a href="{% url 'formapp:post-info' post.id %}">
+                            <strong>{{ post.username }}</strong>----------><small>{{ post.pub_date }}</small><br>
+                            <ul>
+                                <li style="none">{{ post.post_content }}</li><br>
+                            </ul>
+                        </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+{% endblock content %}

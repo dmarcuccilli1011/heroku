@@ -1,0 +1,16 @@
+body {
+    border: 2px solid green;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    border: 1px solid blue;
+}
+
+div {
+    border: 1px solid pink;
+    padding: 5px;
+}
