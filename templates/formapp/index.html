@@ -5,11 +5,19 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'formapp/index_style.css' %}"> 
     <img id="image1" src="{% static 'formapp/welcome_image1.jpg' %}" alt="an image would go here">
+
+    <!-- navigation for blog post app -->
         <div id="rightSide">
             <h2>Navigation</h2>
             <ul>
+                <li><a href="{% url 'formapp:index' %}">Blogpost Home!</a></li>
                 <li><a href="{% url 'formapp:blogpost-add' %}">Click here to make a blog post!</a></li>
+                <li><a href="{% url 'formapp:all-blogposts' %}">Click here to view every post!</a></li>
+                
             </ul>
+            <form style="float:left; padding-left: 15px;" class="form-inline mt-2 mt-md-0" action="{% url 'formapp:search-results' %}" method="GET">
+                <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search for content" aria-label="Search">
+            </form>
         </div>
 
         

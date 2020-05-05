@@ -7,6 +7,7 @@ from django.views import generic, View
 from django.views.decorators.http import require_http_methods
 from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 
 #imports from this application below
 from formapp.forms import CommentForm
@@ -39,7 +40,20 @@ class BlogPostCreate(CreateView):
         
         context['form'] = empty_form
         return context
-        
+
+class ThanksView( generic.TemplateView):
+    template_name = 'formapp/thanks.html'
+
+# class to display all existing posts, ideally 25 at a time or so
+class AllBlogPosts( generic.ListView ):
+    model = BlogPost
+    template_name = 'formapp/all_posts.html'
+    context_object_name = 'post_list'
+
+    def get_queryset(self):
+        payload = BlogPost.objects.all()
+        return payload
+
 # below we use CommentForm, found in formapp/forms. this is a bit confusing
 class BlogPostInfo(generic.DetailView):
     model = BlogPost
@@ -57,6 +71,18 @@ class BlogPostInfo(generic.DetailView):
         context['form'] = the_form
         return context
 
+class SearchResults( generic.ListView ):
+    model = BlogPost
+    context_object_name = 'post_list'
+    template_name = 'formapp/search_results.html'
+    
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return BlogPost.objects.filter(
+            Q(username__icontains=query) | Q(post_content__icontains=query)
+        )
+
+
 def add_comment(request, pk):
     blogpost_id = pk
     the_form = CommentForm(request.POST)
@@ -67,8 +93,7 @@ def add_comment(request, pk):
     return HttpResponseRedirect(reverse('formapp:post-info', args=(blogpost_id,)))
 
 
-class ThanksView( generic.TemplateView):
-    template_name = 'formapp/thanks.html'
+
 
 
 #@require_http_methods(["GET", "POST"])

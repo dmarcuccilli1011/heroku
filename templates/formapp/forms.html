@@ -5,7 +5,20 @@
 
 {% block content %}
 
-        <div>
+<div class="right_side">
+            <h2>Navigation</h2>
+            <ul>
+                <li><a href="{% url 'formapp:index' %}">Blogpost Home!</a></li>
+                <li><a href="{% url 'formapp:blogpost-add' %}">Click here to make a blog post!</a></li>
+                <li><a href="{% url 'formapp:all-blogposts' %}">Click here to view every post!</a></li>
+                
+            </ul>
+            <form style="float:left; padding-left: 15px;" class="form-inline mt-2 mt-md-0" action="{% url 'formapp:search-results' %}" method="GET">
+                <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search for content" aria-label="Search">
+            </form>
+        </div>
+
+        <div style="width: 60%;">
             <h2>Create your new post below!</h2>
 
             <form method="post">{% csrf_token %}

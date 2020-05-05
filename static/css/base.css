@@ -48,9 +48,26 @@ body {
     padding-bottom: 75px;
 }
 
-.profile_pic{
+.profile_pic {
     position: relative;
     float: right;
     height: 250px;
 
+}
+
+.blog_post {
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 60%;
+    border: 1px solid red;
+}
+
+.right_side {
+    position: relative;
+    float: right;
+    width: 25%;
+    background-color: #62f86a;
+    margin-left: -100px;
+    margin-bottom: -50px;
+    padding-bottom: 50px;
 }

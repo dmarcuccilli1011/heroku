@@ -8,7 +8,20 @@
 
 {% block content %}
 
-        <div>
+<div class="right_side">
+            <h2>Navigation</h2>
+            <ul>
+                <li><a href="{% url 'formapp:index' %}">Blogpost Home!</a></li>
+                <li><a href="{% url 'formapp:blogpost-add' %}">Click here to make a blog post!</a></li>
+                <li><a href="{% url 'formapp:all-blogposts' %}">Click here to view every post!</a></li>
+            </ul>
+            <form style="float:left; padding-left: 15px;" class="form-inline mt-2 mt-md-0" action="{% url 'formapp:search-results' %}" method="GET">
+                <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search for content" aria-label="Search">
+            </form>
+        </div>
+
+
+        <div class="blog_post">
             <p>
                 <b>{{ blogpost.username }}</b>@<i>{{ blogpost.pub_date }}</i>
             </p>
@@ -16,7 +29,7 @@
             <p><ul>{{ blogpost.post_content }}</ul></p>
         </div><br><br>
 
-        <div>
+        <div style="width: 60%;">
             <u>Comments:</u>
 
             <ul>
@@ -25,11 +38,12 @@
                     <p> <strong>{{ comment.username}}</strong> at  <strong>{{ comment.timestamp }}</strong>:</p>
                     <p>{{ comment.comment_content }}</p>
                 </li>
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 {% endfor %}
             </ul>
         </div><br><br>
 
-        <div style="width: 80%; padding-left: 50px;">
+        <div style="width: 60%; padding-left: 50px;">
             <u><h5>Add a comment :</h5></u>
             <form action="{% url 'formapp:comment-add' blogpost.id %}" method="POST">
                 {% csrf_token %}
