@@ -1,18 +1,12 @@
-<!DOCTYPE html>
+{% extends '_base.html' %}
 
-<html>
-    <head>
-        <title>thanks.html</title>
-    </head>
-
-    <body>
-        <h1>thanks.html template</h1>
-
+{% block title %}thank you!{% endblock title %}
+        
+{% block content %}
         <div>
-            <h2>inside the div</h2>
-            <a href="{% url 'formapp:index' %}">click here to go home</a>
+            <p>Thank you for your submission <u>{{ user.username }}</u>!</p>
+            <a href="{% url 'formapp:index' %}">click here to go back</a>
 
 
         </div>
-    </body>
-</html>
+{% endblock content %}

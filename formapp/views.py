@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.views import generic, View
 from django.views.decorators.http import require_http_methods
 from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
+from django.contrib.auth import get_user_model
 
 #imports from this application below
 from formapp.forms import CommentForm
@@ -28,28 +29,36 @@ class IndexView( generic.ListView ):
 class BlogPostCreate(CreateView):
     template_name = 'formapp/forms.html'
     model = BlogPost
-    fields = ['username', 'post_content', 'pub_date']
+    form_class = BlogPostForm # BlogPostForm is found in /formapp/models
     success_url = '/formapp/thanks/'
-    
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_user = self.request.user
+        empty_form = BlogPostForm(initial={'username': current_user})
+        
+        context['form'] = empty_form
+        return context
+        
+# below we use CommentForm, found in formapp/forms. this is a bit confusing
 class BlogPostInfo(generic.DetailView):
     model = BlogPost
     template_name = 'formapp/post_info.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        some_data = str(self.request)
+        some_data = str(self.request) # manually strip out the primary key because i suck 
         some_list = some_data.split('/')
         primary_key = some_list[-2]
         the_key = BlogPost.objects.get(pk=primary_key)
-        the_form = CommentForm(initial={'blog_post': the_key})
+        current_user = self.request.user
+        the_form = CommentForm(initial={'blog_post': the_key, 'username': current_user})
         
         context['form'] = the_form
-        context['now'] = timezone.now()
-        context['weird_key'] = the_key
         return context
 
-def add_comment(request, blogpost_id):
+def add_comment(request, pk):
+    blogpost_id = pk
     the_form = CommentForm(request.POST)
 
     new_comment = the_form.save()

@@ -15,12 +15,12 @@ class ContactForm(Form):
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
-        fields = ('blog_post', 'username', 'comment_content', 'timestamp')
+        fields = ('blog_post', 'username', 'comment_content')
+        
         widgets = {
-            'blog_post': forms.TextInput(attrs={'cols': 40, 'readonly': True}),
-            'comment_content': Textarea(attrs={'cols': 40, 'rows': 4}),
-            'timestamp': TimeInput(attrs={'readonly': True})
-           
+            'blog_post': forms.HiddenInput(),
+            'username': forms.HiddenInput(),
+                       
         }
 
 

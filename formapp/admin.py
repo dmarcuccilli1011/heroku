@@ -6,11 +6,11 @@ from .models import *
 
 class CommentInline( admin.TabularInline):
     model = Comment
-    extra = 5
+    extra = 1
 
 class BlogAdmin( admin.ModelAdmin):
-    fields = '__all__'
     inlines = [CommentInline]
-    list_display = ('post_content', 'pub_date')
-    search_fields = ['post_content']
+    list_display = ('username', 'post_content', 'pub_date')
+    search_fields = ['post_content', 'username']
 
+admin.site.register(BlogPost, BlogAdmin)

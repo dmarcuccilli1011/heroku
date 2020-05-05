@@ -8,16 +8,16 @@
 
 {% block content %}
 
-        <h1>take a closer look at this here blog post...</h1>
-        <a href="{% url 'formapp:index' %}">Heres a link back home!</a>
         <div>
-            <h2>Author: {{ blogpost.username }}</h2>
-            <p>posted on: {{ blogpost.pub_date }}</p>
-            <p>{{ blogpost.post_content }}</p>
-        </div>
+            <p>
+                <b>{{ blogpost.username }}</b>@<i>{{ blogpost.pub_date }}</i>
+            </p>
+            
+            <p><ul>{{ blogpost.post_content }}</ul></p>
+        </div><br><br>
 
         <div>
-            <h2>heres the comment section</h2>
+            <u>Comments:</u>
 
             <ul>
                 {% for comment in blogpost.comment_set.all %}
@@ -27,10 +27,10 @@
                 </li>
                 {% endfor %}
             </ul>
-        </div>
+        </div><br><br>
 
         <div style="width: 80%; padding-left: 50px;">
-            <h2>heres where you can post a new comment for this post hopefully</h2>
+            <u><h5>Add a comment :</h5></u>
             <form action="{% url 'formapp:comment-add' blogpost.id %}" method="POST">
                 {% csrf_token %}
                 {{ form|crispy }}

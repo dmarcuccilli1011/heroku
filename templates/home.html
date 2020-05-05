@@ -9,12 +9,20 @@
     <h1>Welcome to my showcase app!</h1>
     <img class="home_image" src="{% static 'images/docker-django-thumbnail.png' %}"><br>
     <p class="welcome_text">This is my Django app. A full description will appear on a dedicated page.
-        Please create an account using the links above and feel free to browse!</p>
+        To start, create an account using the link in the top right corner!<br><br>
+        Click the 'Blog Here!' link on the navbar at the top of the window to join the community!<br>
+        Anyone is free to make a post, although if you do not create an account it will be nearly
+        impossible to trace your post back to you!<br>
+        I understand that it is possible this is what you may prefer...<br><br>
+        Please wipe your feet!
+    </p>
 
     <div class="status_info">
         <u><h4>User Status: </h4></u>
         {% if user.is_authenticated %}
-            hi {{ user.email }}
+            <i>logged in!</i><br>
+            user:  {{ user.username }}<br>
+            email:  {{ user.email }}<br>
             <p><a href="{% url 'account_logout' %}">Log Out Here</a></p>
         {% else %}
             <p>You are not logged in</p>
