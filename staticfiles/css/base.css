@@ -66,8 +66,17 @@ body {
     position: relative;
     float: right;
     width: 25%;
-    background-color: #62f86a;
+    background-color: #ff00005d;
     margin-left: -100px;
     margin-bottom: -50px;
     padding-bottom: 50px;
+}
+
+.user_home_image {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    padding: 5px;
+    border: 2px red solid;
+    height: 250px;
 }

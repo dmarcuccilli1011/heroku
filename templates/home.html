@@ -21,7 +21,7 @@
         <u><h4>User Status: </h4></u>
         {% if user.is_authenticated %}
             <i>logged in!</i><br>
-            user:  {{ user.username }}<br>
+            username:  {{ user.username }}<br>
             email:  {{ user.email }}<br>
             <p><a href="{% url 'account_logout' %}">Log Out Here</a></p>
         {% else %}

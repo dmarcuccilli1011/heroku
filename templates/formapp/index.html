@@ -1,6 +1,8 @@
 {% extends '_base.html' %}
 {% load static %}
 
+{% block title %}Blog Index{% endblock title %}
+
 {% block content %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'formapp/index_style.css' %}"> 
@@ -26,14 +28,13 @@
             <h2>Welcome to the blog posts index page!</h2>
             <p>Here we have all sorts of stuff to talk about with people all over the world</p>
             <p>Below are the 5 most recent posts on here. Feel free to make your own
-                using the link in the top right corner!</p>
+                using the link in the navigation panel!</p>
             <br><br>
         </div>
 
 
 
         <div class='post_list'>
-            <h4>Here are what some other people have posted: </h4>
             {% if hello_world %}
 
                 {% for post in hello_world.blog_posts %}
@@ -44,6 +45,7 @@
                             </ul>
                         </a>
                 {% endfor %}
+                
             {% endif %}
         </div>
 

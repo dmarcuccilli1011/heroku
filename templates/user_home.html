@@ -1,0 +1,26 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}User HomePage{% endblock title %}
+
+{% block content %}
+    <div class="welcome_text">
+        <h1>User Homepage</h1>
+        <p>Welcome to the user homepage {{ user.username }}! We're happy to have you
+        as always. I hope you find everything you need on here!</p>
+    </div>
+
+    
+
+    <div class="right_side">
+        <h4>Settings</h4>
+        <ul>
+            <li><a href="{% url 'account_change_password' %}">Reset Password</a></li>
+            <li><a href="{% url 'account_email' %}">Change Email/Resend Verification</a></li>
+            <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+        </ul>
+
+    </div><br>
+
+    <img class="user_home_image" src="{% static 'images/users_300x300.png' %}" alt='happy people picture'>
+{% endblock content %}
