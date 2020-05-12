@@ -18,12 +18,12 @@
             </form>
         </div>
 
-        <div style="width: 60%;">
+        <div style="width: 60%; padding-bottom: 50px;">
             <h2>Create your new post below!</h2>
 
             <form method="post">{% csrf_token %}
                 {{ form|crispy }}
-                <input type="submit" value="Save">
+                <input type="submit" value="Create New Post">
             </form>
 
         </div>

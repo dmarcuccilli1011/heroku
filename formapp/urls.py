@@ -13,5 +13,6 @@ urlpatterns = [
     path('blogpost/<uuid:pk>/comment/', add_comment, name='comment-add'),
     path('blogpost/all/', AllBlogPosts.as_view(), name='all-blogposts'),
     path('blogpost/search/', SearchResults.as_view(), name='search-results'),
+    path('blogpost/categories/', CategorySearchView.as_view(), name='category-search'),
     
 ]

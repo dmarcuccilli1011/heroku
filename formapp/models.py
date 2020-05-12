@@ -14,9 +14,53 @@ class BlogPost(models.Model):
         default = uuid.uuid4,
         editable = False
     )
+    ADMIN = 'admin' # note admin choice should not be available to users
+    SPORTS = 'sports' # so we have a way for users to quickly find posts i deem important
+    ANIMALS = 'animals'
+    NEWS = 'news'
+    COMPUTER_SCIENCE = 'computer science'
+    TECHNOLOGY = 'technology'
+    FINANCE = 'finance'
+    OTHER = 'other'
+    SCIENCE = 'science'
+    HEALTH = 'health'
+    WEATHER = 'weather'
+    SPORTS = 'sports'
+    TV = 'tv'
+    MEMES = 'memes'
+    TRAVEL = 'travel'
+    MUSIC = 'music'
+    ART = 'artistic'
+    MINDBLOWING = 'mindblowing'
+    CUTE = 'cute'
+    PANDEMICS = 'coronavirus'
+    BOOKS = 'books'
+    selection_choices = [
+        (SPORTS, 'sports'),
+        (ANIMALS, 'animals'),
+        (NEWS, 'news'),
+        (COMPUTER_SCIENCE, 'computer science'),
+        (TECHNOLOGY, 'technology'),
+        (FINANCE, 'finance'),
+        (OTHER, 'other'),
+        (SCIENCE, 'science'),
+        (HEALTH, 'health'),
+        (WEATHER, 'weather'),
+        (SPORTS, 'sports'),
+        (TV, 'tv'),
+        (MEMES, 'memes'),
+        (TRAVEL, 'travel'),
+        (MUSIC, 'music'),
+        (ART, 'artisic'),
+        (MINDBLOWING, 'mindblowing'),
+        (CUTE, 'cute'),
+        (PANDEMICS, 'coronavirus'),
+        (BOOKS, 'books'),
+    ]
     username = models.CharField(max_length=100, name='username', default='choose any username')
     post_content = models.TextField(max_length=500,default='type your post here')
-    pub_date = models.DateTimeField('Date Published', default=timezone.now)
+    pub_date = models.DateTimeField(auto_now=True)
+    category = models.CharField(max_length=20, choices=selection_choices, default=OTHER)
 
     class Meta:
         verbose_name_plural = 'Posts'
@@ -34,7 +78,7 @@ class Comment(models.Model):
     #username = models.CharField(max_length=100, verbose_name='username', default='choose any username')
     username = models.TextField(max_length=125, default="username")
     comment_content = models.TextField(max_length=250, default='type your comment here')
-    timestamp = models.TimeField('timestamp', default=timezone.now)
+    created_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name_plural = 'Comments'
@@ -47,10 +91,9 @@ class Comment(models.Model):
 class BlogPostForm(ModelForm):
     class Meta:
         model = BlogPost
-        fields = ('username', 'post_content', 'pub_date')
+        fields = ('username', 'post_content', 'category')
         widgets = {
             'username': forms.HiddenInput(),
-            'pub_date': DateTimeInput(attrs={'readonly': True})
         }
 
 

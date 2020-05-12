@@ -79,7 +79,18 @@ class SearchResults( generic.ListView ):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return BlogPost.objects.filter(
-            Q(username__icontains=query) | Q(post_content__icontains=query)
+            Q(username__icontains=query) | Q(post_content__icontains=query) | Q(category__icontains=query)
+        )
+
+class CategorySearchView( generic.ListView ):
+    model = BlogPost
+    context_object_name = 'post_list'
+    template_name = 'formapp/search_results.html'
+
+    def get_queryset(self): 
+        query = self.request.GET.get('q')
+        return BlogPost.objects.filter(
+            Q(category__icontains=query)
         )
 
 

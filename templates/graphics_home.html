@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+{% block title %}Graphics Home{% endblock title %}
+
+{% block content %}
+<h2>Here we are building graphical displays and data structures</h2>
+<p>Click around and explore!</p>
+
+<ul>
+    <li><a href="{% url 'svg-demo' %}">Simple Vector Graphics Demonstration</a></li>
+    <li><a href="#">Basic Encryption Example</a></li>
+    <li><a href="{% url '3d-cube' %}">Animation demonstration</a></li>
+</ul>
+
+{% endblock content%}

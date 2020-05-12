@@ -17,6 +17,33 @@
                 <li><a href="{% url 'formapp:all-blogposts' %}">Click here to view every post!</a></li>
                 
             </ul>
+            <form style="float:left; padding-left: 15px; padding-bottom:5px;" class="form-inline mt-2 mt-md-0" action="{% url 'formapp:category-search' %}" method="GET">
+                <label for="categories">Choose a category : </label>
+                <select id="categories" name="q" style="margin-bottom: 5px;">
+                    <!-- note admin choice is not allowed for users -->
+                    <option value="animals">animals</option>
+                    <option value="artistic">artistic</option>
+                    <option value="books">books</option>
+                    <option value="computer science">computer science</option>
+                    <option value="coronavirus">coronavirus</option>
+                    <option value="cute">cute</option>
+                    <option value="finance">finance</option>
+                    <option value="health">health</option>
+                    <option value="memes">memes</option>
+                    <option value="mindblowing">mindblowing</option>
+                    <option value="music">music</option>
+                    <option value="news">news</option>
+                    <option value="other">other</option>
+                    <option value="science">science</option>
+                    <option value="sports">sports</option>
+                    <option value="technology">technology</option>
+                    <option value="travel">travel</option>
+                    <option value="tv">television</option>              
+                    <option value="weather">weather</option>
+                </select>
+                <input type="submit" value="search by category">
+            </form>
+
             <form style="float:left; padding-left: 15px;" class="form-inline mt-2 mt-md-0" action="{% url 'formapp:search-results' %}" method="GET">
                 <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search for content" aria-label="Search">
             </form>
@@ -39,7 +66,7 @@
 
                 {% for post in hello_world.blog_posts %}
                         <a href="{% url 'formapp:post-info' post.id %}">
-                            <strong>{{ post.username }}</strong>----------><small>{{ post.pub_date }}</small><br>
+                            <strong>{{ post.username }}</strong>----------><small>{{ post.pub_date }}, {{ post.category }}</small><br>
                             <ul>
                                 <li style="none">{{ post.post_content }}</li><br>
                             </ul>

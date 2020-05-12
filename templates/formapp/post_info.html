@@ -23,7 +23,7 @@
 
         <div class="blog_post">
             <p>
-                <b>{{ blogpost.username }}</b>@<i>{{ blogpost.pub_date }}</i>
+                <b>{{ blogpost.username }}</b>@<i>{{ blogpost.pub_date }}</i>, category: {{ blogpost.category }}
             </p>
             
             <p><ul>{{ blogpost.post_content }}</ul></p>
@@ -35,7 +35,7 @@
             <ul>
                 {% for comment in blogpost.comment_set.all %}
                 <li>
-                    <p> <strong>{{ comment.username}}</strong> at  <strong>{{ comment.timestamp }}</strong>:</p>
+                    <p> <strong>{{ comment.username }}</strong> at  <strong>{{ comment.created_at }}</strong>:</p>
                     <p>{{ comment.comment_content }}</p>
                 </li>
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,7 +43,7 @@
             </ul>
         </div><br><br>
 
-        <div style="width: 60%; padding-left: 50px;">
+        <div style="width: 60%; padding-left: 50px; padding-bottom: 75px;">
             <u><h5>Add a comment :</h5></u>
             <form action="{% url 'formapp:comment-add' blogpost.id %}" method="POST">
                 {% csrf_token %}

@@ -23,8 +23,8 @@
     {% for post in post_list %}
         <div class="blog_post">
             <h3><a href="{% url 'formapp:post-info' post.id %}">{{ post.username }}</a></h3>
-            <p>Author: {{ post.post_content }}</p>
-            <p>Price: {{ post.pub_date }}</p>
+            <p>Category: {{ post.category }}</p>
+            <p>Content: {{ post.post_content }}</p>
         </div>
     
     {% endfor %}
