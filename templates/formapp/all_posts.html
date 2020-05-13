@@ -25,7 +25,7 @@
         <a href="{% url 'formapp:post-info' post.id %}">
         <div class="blog_post">
             {{ forloop.counter }})  
-            <p>Post from {{ post.username }}:</p><br>
+            <p>Post from {{ post.username }} with {{ post.number_of_comments }} comments:</p><br>
             <ul>
                 {{ post.post_content }}
             </ul>

@@ -66,9 +66,9 @@
 
                 {% for post in hello_world.blog_posts %}
                         <a href="{% url 'formapp:post-info' post.id %}">
-                            <strong>{{ post.username }}</strong>----------><small>{{ post.pub_date }}, {{ post.category }}</small><br>
+                            <strong>{{ post.username }}</strong>----------><small>{{ post.pub_date }} <br>category: {{ post.category }}<br> number of comments: {{ post.number_of_comments }}</small><br>
                             <ul>
-                                <li style="none">{{ post.post_content }}</li><br>
+                                <li style="list-style: none;">{{ post.post_content }}</li><br>
                             </ul>
                         </a>
                 {% endfor %}

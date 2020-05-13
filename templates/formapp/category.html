@@ -1,6 +1,6 @@
 {% extends '_base.html' %}
 
-{% block title %}Search Here!{% endblock title %}
+{% block title %}categories{% endblock title %}
 
 {% block content %}
 
@@ -18,9 +18,10 @@
             </form>
         </div>
         
-    <h1>Search Results</h1>
+    <h3>category: {{ post_list.category }}</h3>
+    <h4>number of posts: {{ post_list.post_count }}</h4>
 
-    {% for post in post_list %}
+    {% for post in post_list.posts %}
         <div class="blog_post">
             <h3><a href="{% url 'formapp:post-info' post.id %}">{{ post.username }}</h3>
             <p>Category: {{ post.category }}</p>

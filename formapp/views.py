@@ -8,6 +8,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
 from django.contrib.auth import get_user_model
 from django.db.models import Q
+from django.db.models import Count
 
 #imports from this application below
 from formapp.forms import CommentForm
@@ -19,12 +20,9 @@ class IndexView( generic.ListView ):
     context_object_name = 'hello_world'
 
     def get_queryset(self):
-        posts = BlogPost.objects.order_by('-pub_date')[:5]
+        posts = BlogPost.objects.order_by('-pub_date').annotate(number_of_comments=Count('comment'))[:5]
         return {
             'blog_posts': posts,
-            'value1': 'oh', 
-            'value2': 'fuck', 
-            'value3': 42,
              }
 
 class BlogPostCreate(CreateView):
@@ -51,7 +49,7 @@ class AllBlogPosts( generic.ListView ):
     context_object_name = 'post_list'
 
     def get_queryset(self):
-        payload = BlogPost.objects.all()
+        payload = BlogPost.objects.annotate(number_of_comments=Count('comment'))
         return payload
 
 # below we use CommentForm, found in formapp/forms. this is a bit confusing
@@ -80,18 +78,21 @@ class SearchResults( generic.ListView ):
         query = self.request.GET.get('q')
         return BlogPost.objects.filter(
             Q(username__icontains=query) | Q(post_content__icontains=query) | Q(category__icontains=query)
-        )
+        ).annotate(number_of_comments=Count('comment'))
+       
 
 class CategorySearchView( generic.ListView ):
     model = BlogPost
     context_object_name = 'post_list'
-    template_name = 'formapp/search_results.html'
+    template_name = 'formapp/category.html'
 
     def get_queryset(self): 
         query = self.request.GET.get('q')
-        return BlogPost.objects.filter(
+        posts = BlogPost.objects.filter(
             Q(category__icontains=query)
-        )
+        ).annotate(number_of_comments=Count('comment'))
+        post_count = len(posts)
+        return { 'category': query, 'posts': posts, 'post_count': post_count}
 
 
 def add_comment(request, pk):
@@ -103,11 +104,4 @@ def add_comment(request, pk):
 
     return HttpResponseRedirect(reverse('formapp:post-info', args=(blogpost_id,)))
 
-
-
-
-
-#@require_http_methods(["GET", "POST"])
-#class PostView( generic.FormView):
-#    template_name = 'formapp/post_form.html'
 
